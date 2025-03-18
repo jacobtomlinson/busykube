@@ -38,7 +38,7 @@ Common actions for Helm:
 ## Installation
 
 ```bash
-go install github.com/jacobtomlinson/busykube@latest
+go install github.com/jacobtomlinson/busykube@main
 ```
 
 Busykube can also create all the symlinks for you automatically.
