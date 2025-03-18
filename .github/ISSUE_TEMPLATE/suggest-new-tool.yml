@@ -1,4 +1,5 @@
 name: "Suggest a New Tool"
+description: "Propose a new tool to include in the busykube binary"
 title: "[New Tool] <Tool Name>"
 labels: enhancement
 assignees: []
