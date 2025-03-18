@@ -1,0 +1,32 @@
+name: "Suggest a New Tool"
+about: "Propose a new tool to include in the busykube binary"
+title: "[New Tool] <Tool Name>"
+labels: enhancement
+assignees: ''
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new tool for `busykube`! Please fill out the details below.
+
+  - type: input
+    id: tool_name
+    attributes:
+      label: "Tool Name"
+      description: "What is the name of the tool you are suggesting?"
+      placeholder: "e.g., kubectl, helm, kind"
+
+  - type: input
+    id: github_url
+    attributes:
+      label: "GitHub URL"
+      description: "Provide the GitHub repository URL for the tool."
+      placeholder: "e.g., https://github.com/kubernetes/kubectl"
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Why should this tool be included?"
+      description: "Explain why this tool would be a good addition to `busykube`."
+      placeholder: "e.g., This tool is widely used for managing Kubernetes clusters..."
