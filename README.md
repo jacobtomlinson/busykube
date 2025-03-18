@@ -2,7 +2,7 @@
 
 A busybox style all-in-one binary for Kubernetes. All your favourite Kubernetes tools in a single executable.
 
-This project builds `kubectl`, `helm`, `kind` [and more]() into a single binary. 
+This project builds `kubectl`, `helm`, `kind` [and more](https://github.com/jacobtomlinson/busykube/issues/new?template=suggest-new-tool.yml) into a single binary. 
 
 You can use them as subcommands directly from `busykube`.
 
