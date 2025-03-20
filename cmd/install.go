@@ -25,7 +25,7 @@ var installCmd = &cobra.Command{
         // Iterate over all subcommands
         for _, subCmd := range RootCmd.Commands() {
 			// Skip specific subcommands
-			if subCmd.Name() == "install" || subCmd.Name() == "help" || subCmd.Name() == "completion" {
+			if subCmd.Name() == "install" || subCmd.Name() == "help" || subCmd.Name() == "completion" || subCmd.Name() == "versions" {
 				continue
 			}
             symlinkPath := filepath.Join(binaryDir, subCmd.Name())
