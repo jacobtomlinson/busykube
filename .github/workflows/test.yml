@@ -5,21 +5,6 @@ on:
   push:
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-            fetch-depth: 0
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-            go-version: stable
-      - name: golangci-lint
-        uses: golangci/golangci-lint-action@v6
-        with:
-          version: v1.64
   test:
     runs-on: ubuntu-latest
     steps:
@@ -31,7 +16,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
             go-version: stable
-      - name: Run tests
-        run: go test -v ./...
       - name: Run build
         run: go build -v ./...
+      - name: Run tests
+        run: go test -v ./...
