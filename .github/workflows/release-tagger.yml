@@ -20,6 +20,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Authenticate with Git using token
+        env:
+          TOKEN: ${{ secrets.TAG_PUSH_TOKEN }} # Required in order to trigger the goreleaser workflow
+        run: |
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
+
       - name: Generate tag
         id: generate_tag
         run: |
