@@ -1,0 +1,51 @@
+name: Create new tag
+
+on:
+  schedule:
+    - cron: "0 1 1 * *" # Runs on the first day of every month
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+permissions:
+  contents: write # Grant write permissions to push tags
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Generate tag
+        id: generate_tag
+        run: |
+          YEAR=$(date +'%Y')
+          MONTH=$(date +'%m')
+          BASE_TAG="v0.${YEAR}${MONTH}"
+          LAST_NUMBER=0
+
+          # Fetch all tags
+          git fetch --tags
+
+          # Check for existing tags with the same base
+          EXISTING_TAGS=$(git tag --list "${BASE_TAG}.*")
+          if [ -n "$EXISTING_TAGS" ]; then
+            # Find the highest existing number
+            LAST_NUMBER=$(echo "$EXISTING_TAGS" | sed -E "s/${BASE_TAG}\.//" | sort -n | tail -n 1)
+            LAST_NUMBER=$((LAST_NUMBER + 1))
+          fi
+
+          # Create the new tag
+          TAG="${BASE_TAG}.${LAST_NUMBER}"
+          echo "tag=$TAG" >> $GITHUB_ENV
+
+      - name: Create and push tag
+        env:
+          TAG: ${{ env.tag }}
+        run: |
+          git tag $TAG
+          git push origin $TAG
